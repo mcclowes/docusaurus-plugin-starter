@@ -1,5 +1,7 @@
-import pluginStarter from './plugin'
-export default pluginStarter
-
+export { default } from './plugin'
 export type { PluginStarterOptions } from './types'
-
+export {
+  starterRemarkPlugin,
+  createStarterRemarkPlugin,
+  type StarterRemarkPluginOptions,
+} from './remark/starterRemarkPlugin'
