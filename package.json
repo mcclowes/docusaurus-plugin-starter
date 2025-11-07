@@ -4,13 +4,16 @@
   "description": "Starter template for building custom Docusaurus plugins",
   "type": "module",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "exports": {
     ".": {
+      "types": "./lib/index.d.ts",
       "import": "./lib/index.js",
       "require": "./lib/index.js",
       "default": "./lib/index.js"
     },
     "./remark/starter": {
+      "types": "./lib/remark/starterRemarkPlugin.d.ts",
       "import": "./lib/remark/starterRemarkPlugin.js",
       "require": "./lib/remark/starterRemarkPlugin.js",
       "default": "./lib/remark/starterRemarkPlugin.js"
