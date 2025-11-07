@@ -15,16 +15,26 @@ const libDir = join(rootDir, 'lib');
 async function copyThemeFiles() {
   // Ensure lib directory exists
   await fs.ensureDir(libDir);
-  
+
+  // Filter function to exclude test files and test-related files
+  const filterFunc = (src) => {
+    const filename = src.split('/').pop();
+    // Exclude test files, test snapshots, and __tests__ directories
+    return !filename.includes('.test.') &&
+           !filename.includes('.spec.') &&
+           filename !== '__tests__' &&
+           filename !== '__snapshots__';
+  };
+
   // Copy directories that contain non-TypeScript files (components, theme, remark)
   const itemsToCopy = ['components', 'theme', 'remark'];
-  
+
   for (const item of itemsToCopy) {
     const sourcePath = join(srcDir, item);
     const destPath = join(libDir, item);
-    
+
     if (existsSync(sourcePath)) {
-      await fs.copy(sourcePath, destPath, { overwrite: true });
+      await fs.copy(sourcePath, destPath, { overwrite: true, filter: filterFunc });
     }
   }
 }

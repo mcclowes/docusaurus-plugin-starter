@@ -24,7 +24,7 @@ export const starterRemarkPlugin: Plugin<[StarterRemarkPluginOptions?]> = (optio
   const replacement = options.replacement ?? '✅ TODO'
 
   return tree => {
-    visit(tree, 'text', node => {
+    visit(tree, 'text', (node: any) => {
       if (typeof node.value !== 'string') return
       if (!node.value.includes(marker)) return
 
