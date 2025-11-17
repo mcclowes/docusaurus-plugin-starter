@@ -19,7 +19,7 @@ npm run example:start
 
 - Open `http://localhost:3000/starter` to see the example route the plugin registers.
 - Edit anything in `src/` to iterate; the example site hot-reloads automatically.
-- Run `npm run build` when you are ready to consume or publish the compiled plugin in `lib/`.
+- Run `npm run build` when you are ready to consume or publish the compiled plugin in `dist/`.
 
 ## What you get
 
@@ -32,9 +32,9 @@ npm run example:start
 │   ├── remark/starterRemarkPlugin.ts
 │   └── theme/StarterMessage    # Theme component exposed for swizzling
 ├── __tests__/plugin.test.js    # Lifecycle smoke tests
-├── examples/docusaurus-v3/     # Local example site consuming ./lib
+├── examples/docusaurus-v3/     # Local example site consuming ./dist
 ├── scripts/                    # Build + watch helpers for copying assets
-├── tsconfig.json               # TypeScript config (src → lib)
+├── tsconfig.json               # TypeScript config (src → dist)
 ├── jest.config.cjs             # Jest set up for TS/React
 └── README.md                   # You are here
 ```
@@ -74,7 +74,7 @@ export default {
   ],
   plugins: [
     [
-      path.resolve(__dirname, '../../lib'),
+      path.resolve(__dirname, '../../dist'),
       {
         greetingMessage: 'Welcome to the example site!',
         routePath: '/starter',
@@ -88,7 +88,7 @@ Copy this into your own project and replace the example pieces with real functio
 
 ## Scripts
 
-- `npm run build` – Compile TypeScript and copy assets into `lib/`.
+- `npm run build` – Compile TypeScript and copy assets into `dist/`.
 - `npm run watch` – Rebuild on changes (perfect when the example site is running).
 - `npm run test` – Execute Jest against the TypeScript sources.
 - `npm run example:*` – Helpers for the bundled Docusaurus site.

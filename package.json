@@ -3,24 +3,24 @@
   "version": "0.1.0",
   "description": "Starter template for building custom Docusaurus plugins",
   "type": "module",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./lib/index.d.ts",
-      "import": "./lib/index.js",
-      "require": "./lib/index.js",
-      "default": "./lib/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./remark/starter": {
-      "types": "./lib/remark/starterRemarkPlugin.d.ts",
-      "import": "./lib/remark/starterRemarkPlugin.js",
-      "require": "./lib/remark/starterRemarkPlugin.js",
-      "default": "./lib/remark/starterRemarkPlugin.js"
+      "types": "./dist/remark/starterRemarkPlugin.d.ts",
+      "import": "./dist/remark/starterRemarkPlugin.js",
+      "require": "./dist/remark/starterRemarkPlugin.js",
+      "default": "./dist/remark/starterRemarkPlugin.js"
     }
   },
   "files": [
-    "lib/",
+    "dist/",
     "README.md",
     "LICENSE"
   ],

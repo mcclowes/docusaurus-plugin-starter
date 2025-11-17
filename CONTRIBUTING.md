@@ -40,7 +40,7 @@ cd docusaurus-plugin-starter
 npm install
 ```
 
-- `npm run build` – compile TypeScript and copy assets into `lib/`
+- `npm run build` – compile TypeScript and copy assets into `dist/`
 - `npm run watch` – rebuild on changes (ideal while running the example site)
 - `npm test` – run Jest
 - `npm run example:start` – launch the bundled Docusaurus example for manual testing
@@ -55,12 +55,12 @@ src/
   plugin.ts              # Typed plugin implementation
   remark/                # Example remark plugin
   theme/                 # Theme components exposed for swizzling
-lib/                     # Compiled output shipped to npm
-examples/docusaurus-v3/  # Example site consuming ../../lib
+dist/                    # Compiled output shipped to npm
+examples/docusaurus-v3/  # Example site consuming ../../dist
 scripts/                 # Helper scripts for build/watch flows
 ```
 
-Edit files in `src/` and run the build script before publishing or testing against `lib/`.
+Edit files in `src/` and run the build script before publishing or testing against `dist/`.
 
 ## Testing checklist
 
@@ -74,7 +74,7 @@ Edit files in `src/` and run the build script before publishing or testing again
 - TypeScript for plugin logic; JSX for components.
 - Follow Prettier formatting (`npm run format`).
 - Use meaningful names and add comments for non-obvious logic.
-- Avoid editing files in `lib/` directly; they are generated.
+- Avoid editing files in `dist/` directly; they are generated.
 
 ## Pull request process
 

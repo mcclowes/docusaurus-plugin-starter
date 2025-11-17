@@ -1,6 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import pluginStarter from '../../lib/index.js';
+import pluginStarter from '../../dist/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -53,7 +53,7 @@ export default {
   plugins: [
     [
       // Use the local plugin from the repo root
-      path.resolve(__dirname, '../../lib'),
+      path.resolve(__dirname, '../../dist'),
       {
         greetingMessage: 'Welcome to the example site!',
         routePath: '/starter',

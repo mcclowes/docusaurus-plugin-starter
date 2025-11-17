@@ -8,13 +8,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const rootDir = join(__dirname, '..');
 const srcDir = join(rootDir, 'src');
-const libDir = join(rootDir, 'lib');
+const distDir = join(rootDir, 'dist');
 
 async function build() {
-  console.log('Copying JS files and directories to lib...');
+  console.log('Copying JS files and directories to dist...');
 
-  // Ensure lib directory exists (tsc should have created it)
-  await fs.ensureDir(libDir);
+  // Ensure dist directory exists (tsc should have created it)
+  await fs.ensureDir(distDir);
 
   // Filter function to exclude test files and test-related files
   const filterFunc = src => {
@@ -33,7 +33,7 @@ async function build() {
 
   for (const item of itemsToCopy) {
     const sourcePath = join(srcDir, item);
-    const destPath = join(libDir, item);
+    const destPath = join(distDir, item);
 
     if (await fs.pathExists(sourcePath)) {
       const stat = await fs.stat(sourcePath);

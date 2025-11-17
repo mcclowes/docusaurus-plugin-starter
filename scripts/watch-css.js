@@ -10,11 +10,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const rootDir = join(__dirname, '..');
 const srcDir = join(rootDir, 'src');
-const libDir = join(rootDir, 'lib');
+const distDir = join(rootDir, 'dist');
 
 async function copyThemeFiles() {
-  // Ensure lib directory exists
-  await fs.ensureDir(libDir);
+  // Ensure dist directory exists
+  await fs.ensureDir(distDir);
 
   // Filter function to exclude test files and test-related files
   const filterFunc = src => {
@@ -33,7 +33,7 @@ async function copyThemeFiles() {
 
   for (const item of itemsToCopy) {
     const sourcePath = join(srcDir, item);
-    const destPath = join(libDir, item);
+    const destPath = join(distDir, item);
 
     if (existsSync(sourcePath)) {
       await fs.copy(sourcePath, destPath, { overwrite: true, filter: filterFunc });
