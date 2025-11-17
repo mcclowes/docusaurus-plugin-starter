@@ -53,8 +53,8 @@ Swap these hooks for the ones your plugin needs.
 Inside `examples/docusaurus-v3/docusaurus.config.js`:
 
 ```js
-import path from 'path'
-import pluginStarter from 'docusaurus-plugin-starter'
+import path from 'path';
+import pluginStarter from 'docusaurus-plugin-starter';
 
 export default {
   presets: [
@@ -81,7 +81,7 @@ export default {
       },
     ],
   ],
-}
+};
 ```
 
 Copy this into your own project and replace the example pieces with real functionality.

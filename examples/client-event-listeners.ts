@@ -28,7 +28,7 @@ export default (function () {
     onRouteUpdate({ location }) {
       if (!listenersAttached) {
         // Add keyboard shortcuts
-        document.addEventListener('keydown', (event) => {
+        document.addEventListener('keydown', event => {
           // Example: Press '/' to focus search
           if (event.key === '/' && !isInputFocused()) {
             event.preventDefault();
@@ -43,10 +43,7 @@ export default (function () {
           clearTimeout(scrollTimer);
           scrollTimer = setTimeout(() => {
             const scrollPosition = window.scrollY;
-            sessionStorage.setItem(
-              `scroll-${location.pathname}`,
-              scrollPosition.toString()
-            );
+            sessionStorage.setItem(`scroll-${location.pathname}`, scrollPosition.toString());
           }, 100);
         });
 

@@ -28,7 +28,7 @@ if (!ExecutionEnvironment.canUseDOM) {
       // Example: Add zoom functionality to all images in markdown content
       const images = document.querySelectorAll('.markdown img');
 
-      images.forEach((img) => {
+      images.forEach(img => {
         // Skip if already processed
         if (img.classList.contains('zoom-enabled')) {
           return;

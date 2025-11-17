@@ -87,7 +87,7 @@ module.exports = function contentChangelogPlugin(context, options) {
 
       // Create individual entry pages
       await Promise.all(
-        content.map(async (entry) => {
+        content.map(async entry => {
           const entryDataPath = await createData(
             `changelog-${entry.id}.json`,
             JSON.stringify(entry)
@@ -112,17 +112,14 @@ module.exports = function contentChangelogPlugin(context, options) {
       await fs.writeFile(path.join(outDir, 'changelog.xml'), rss);
 
       // Generate JSON API
-      const api = content.map((entry) => ({
+      const api = content.map(entry => ({
         id: entry.id,
         title: entry.title,
         version: entry.version,
         date: entry.date,
         type: entry.type,
       }));
-      await fs.writeFile(
-        path.join(outDir, 'changelog.json'),
-        JSON.stringify(api, null, 2)
-      );
+      await fs.writeFile(path.join(outDir, 'changelog.json'), JSON.stringify(api, null, 2));
     },
   };
 };
@@ -194,15 +191,12 @@ import clsx from 'clsx';
 
 export default function ChangelogList({ entries }) {
   return (
-    <Layout
-      title="Changelog"
-      description="Product updates and release notes"
-    >
+    <Layout title="Changelog" description="Product updates and release notes">
       <div className="container margin-vert--lg">
         <h1>Changelog</h1>
 
         <div className="changelog-list">
-          {entries.entries.map((entry) => (
+          {entries.entries.map(entry => (
             <div key={entry.id} className="changelog-item">
               <div className="changelog-header">
                 <Link to={`/changelog/${entry.slug}`}>
@@ -210,17 +204,13 @@ export default function ChangelogList({ entries }) {
                 </Link>
 
                 <div className="changelog-meta">
-                  <span className={clsx('badge', `badge-${entry.type}`)}>
-                    {entry.type}
-                  </span>
+                  <span className={clsx('badge', `badge-${entry.type}`)}>{entry.type}</span>
                   <span className="version">v{entry.version}</span>
                   <time>{new Date(entry.date).toLocaleDateString()}</time>
                 </div>
               </div>
 
-              <div className="changelog-preview">
-                {entry.body.slice(0, 200)}...
-              </div>
+              <div className="changelog-preview">{entry.body.slice(0, 200)}...</div>
             </div>
           ))}
         </div>
@@ -241,10 +231,7 @@ import Link from '@docusaurus/Link';
 
 export default function ChangelogEntry({ entry }) {
   return (
-    <Layout
-      title={entry.title}
-      description={`Release notes for version ${entry.version}`}
-    >
+    <Layout title={entry.title} description={`Release notes for version ${entry.version}`}>
       <div className="container margin-vert--lg">
         <Link to="/changelog" className="back-link">
           ← Back to Changelog
@@ -259,9 +246,7 @@ export default function ChangelogEntry({ entry }) {
             </div>
           </header>
 
-          <MDXContent>
-            {entry.body}
-          </MDXContent>
+          <MDXContent>{entry.body}</MDXContent>
         </article>
       </div>
     </Layout>
@@ -299,10 +284,7 @@ module.exports = function teamPlugin(context, options) {
       setGlobalData({ members: content });
 
       // Team list page
-      const dataPath = await createData(
-        'team.json',
-        JSON.stringify(content)
-      );
+      const dataPath = await createData('team.json', JSON.stringify(content));
 
       addRoute({
         path: '/team',
@@ -313,11 +295,8 @@ module.exports = function teamPlugin(context, options) {
 
       // Individual member pages
       await Promise.all(
-        content.map(async (member) => {
-          const memberData = await createData(
-            `team-${member.id}.json`,
-            JSON.stringify(member)
-          );
+        content.map(async member => {
+          const memberData = await createData(`team-${member.id}.json`, JSON.stringify(member));
 
           addRoute({
             path: `/team/${member.id}`,
@@ -352,7 +331,7 @@ module.exports = function apiContentPlugin(context, options) {
 
       const data = await response.json();
 
-      return data.items.map((item) => ({
+      return data.items.map(item => ({
         id: item.id,
         title: item.title,
         description: item.description,
@@ -368,11 +347,11 @@ module.exports = function apiContentPlugin(context, options) {
       setGlobalData({ items: content });
 
       // Create category pages
-      const categories = [...new Set(content.map((item) => item.category))];
+      const categories = [...new Set(content.map(item => item.category))];
 
       await Promise.all(
-        categories.map(async (category) => {
-          const categoryItems = content.filter((item) => item.category === category);
+        categories.map(async category => {
+          const categoryItems = content.filter(item => item.category === category);
           const dataPath = await createData(
             `category-${category}.json`,
             JSON.stringify(categoryItems)
@@ -431,11 +410,8 @@ module.exports = function apiDocsPlugin(context, options) {
 
       // Create API reference pages
       await Promise.all(
-        content.map(async (apiItem) => {
-          const dataPath = await createData(
-            `api-${apiItem.name}.json`,
-            JSON.stringify(apiItem)
-          );
+        content.map(async apiItem => {
+          const dataPath = await createData(`api-${apiItem.name}.json`, JSON.stringify(apiItem));
 
           addRoute({
             path: `/api/${apiItem.name}`,
@@ -447,10 +423,7 @@ module.exports = function apiDocsPlugin(context, options) {
       );
 
       // Create API index page
-      const indexPath = await createData(
-        'api-index.json',
-        JSON.stringify(content)
-      );
+      const indexPath = await createData('api-index.json', JSON.stringify(content));
 
       addRoute({
         path: '/api',
@@ -478,7 +451,7 @@ export default function ChangelogWidget() {
     <div className="changelog-widget">
       <h3>Latest Release: v{latestVersion}</h3>
       <ul>
-        {entries.slice(0, 3).map((entry) => (
+        {entries.slice(0, 3).map(entry => (
           <li key={entry.id}>
             <a href={`/changelog/${entry.slug}`}>{entry.title}</a>
           </li>
@@ -558,10 +531,7 @@ export interface PluginContent {
   latestVersion: string;
 }
 
-declare const plugin: (
-  context: LoadContext,
-  options: PluginOptions
-) => Plugin<ChangelogEntry[]>;
+declare const plugin: (context: LoadContext, options: PluginOptions) => Plugin<ChangelogEntry[]>;
 
 export default plugin;
 ```
@@ -613,8 +583,8 @@ async contentLoaded({ content, actions }) {
 // Group content by tags
 const tagMap = new Map();
 
-content.forEach((item) => {
-  item.tags.forEach((tag) => {
+content.forEach(item => {
+  item.tags.forEach(tag => {
     if (!tagMap.has(tag)) {
       tagMap.set(tag, []);
     }
@@ -624,10 +594,7 @@ content.forEach((item) => {
 
 // Create tag pages
 for (const [tag, items] of tagMap) {
-  const dataPath = await createData(
-    `tag-${tag}.json`,
-    JSON.stringify(items)
-  );
+  const dataPath = await createData(`tag-${tag}.json`, JSON.stringify(items));
 
   addRoute({
     path: `/tags/${tag}`,

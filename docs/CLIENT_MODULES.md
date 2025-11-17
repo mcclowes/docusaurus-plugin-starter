@@ -36,7 +36,9 @@ This is the key advantage: content authors don't need to import anything. Your p
 
 ```markdown
 <!-- In docs/my-page.md -->
+
 ![An image](./image.png)
+
 <!-- Your plugin can automatically add zoom to this image -->
 <!-- No imports needed! -->
 ```
@@ -59,6 +61,7 @@ export default {
 ```
 
 **When to use:**
+
 - Initializing or reinitializing third-party libraries
 - DOM manipulation (add classes, event listeners)
 - Cleaning up from previous route
@@ -76,6 +79,7 @@ export default {
 ```
 
 **When to use:**
+
 - Analytics tracking
 - Scroll position restoration
 - Operations that need fully rendered DOM
@@ -90,7 +94,7 @@ This is the pattern used by `docusaurus-plugin-image-zoom`:
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import mediumZoom from 'medium-zoom';
 
-export default (function() {
+export default (function () {
   // Only run in browser, not during SSR
   if (!ExecutionEnvironment.canUseDOM) {
     return null;
@@ -104,12 +108,13 @@ export default (function() {
         margin: 24,
         background: 'rgba(0, 0, 0, 0.9)',
       });
-    }
+    },
   };
 })();
 ```
 
 **Key principles:**
+
 1. Check `ExecutionEnvironment.canUseDOM` to avoid SSR errors
 2. Use DOM selectors to find target elements
 3. Reinitialize on each route change (SPA navigation)
@@ -123,7 +128,7 @@ import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 let initialized = false;
 
-export default (function() {
+export default (function () {
   if (!ExecutionEnvironment.canUseDOM) {
     return null;
   }
@@ -132,7 +137,7 @@ export default (function() {
     onRouteUpdate() {
       if (!initialized) {
         // Attach global keyboard shortcuts
-        document.addEventListener('keydown', (event) => {
+        document.addEventListener('keydown', event => {
           if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
             event.preventDefault();
             // Open search
@@ -140,7 +145,7 @@ export default (function() {
         });
         initialized = true;
       }
-    }
+    },
   };
 })();
 ```
@@ -158,7 +163,7 @@ export default function myPlugin(context, options) {
     async contentLoaded({ actions }) {
       // Inject options into global data
       actions.setGlobalData({
-        pluginOptions: options
+        pluginOptions: options,
       });
     },
 
@@ -171,7 +176,7 @@ export default function myPlugin(context, options) {
 // In client/index.ts
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
-export default (function() {
+export default (function () {
   if (!ExecutionEnvironment.canUseDOM) {
     return null;
   }
@@ -185,7 +190,7 @@ export default (function() {
       if (options?.enabled) {
         // Do something based on config
       }
-    }
+    },
   };
 })();
 ```
@@ -220,7 +225,7 @@ export default {
 
     // Create new instance
     instance = initializeLibrary();
-  }
+  },
 };
 ```
 
@@ -269,7 +274,7 @@ import debounce from 'lodash/debounce';
 export default {
   onRouteUpdate() {
     console.log('[my-plugin] Client module loaded');
-  }
+  },
 };
 ```
 

@@ -17,13 +17,15 @@ async function build() {
   await fs.ensureDir(libDir);
 
   // Filter function to exclude test files and test-related files
-  const filterFunc = (src) => {
+  const filterFunc = src => {
     const filename = src.split('/').pop();
     // Exclude test files, test snapshots, and __tests__ directories
-    return !filename.includes('.test.') &&
-           !filename.includes('.spec.') &&
-           filename !== '__tests__' &&
-           filename !== '__snapshots__';
+    return (
+      !filename.includes('.test.') &&
+      !filename.includes('.spec.') &&
+      filename !== '__tests__' &&
+      filename !== '__snapshots__'
+    );
   };
 
   // Copy JS files and directories (TypeScript compiles index.ts to index.js)

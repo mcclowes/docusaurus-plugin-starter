@@ -14,13 +14,13 @@ Rehype plugins transform **HTML content** after markdown has been converted to H
 
 ## Remark vs Rehype
 
-| Aspect | Remark | Rehype |
-|--------|--------|--------|
-| **Input** | Markdown | HTML |
-| **AST** | MDAST | HAST |
-| **Timing** | Before HTML conversion | After HTML conversion |
-| **Use Case** | Markdown syntax extensions | HTML manipulation |
-| **Example** | Custom `[[term]]` syntax | Add wrapper divs |
+| Aspect       | Remark                     | Rehype                |
+| ------------ | -------------------------- | --------------------- |
+| **Input**    | Markdown                   | HTML                  |
+| **AST**      | MDAST                      | HAST                  |
+| **Timing**   | Before HTML conversion     | After HTML conversion |
+| **Use Case** | Markdown syntax extensions | HTML manipulation     |
+| **Example**  | Custom `[[term]]` syntax   | Add wrapper divs      |
 
 ## Complete Plugin Structure
 
@@ -33,13 +33,13 @@ module.exports = function rehypeCustomPlugin(options = {}) {
   const {
     wrapperClass = 'content-wrapper',
     addLazyLoading = true,
-    externalLinkIcon = true
+    externalLinkIcon = true,
   } = options;
 
   return function transformer(tree, file) {
     // Add lazy loading to images
     if (addLazyLoading) {
-      visit(tree, 'element', (node) => {
+      visit(tree, 'element', node => {
         if (node.tagName === 'img') {
           node.properties.loading = 'lazy';
           node.properties.decoding = 'async';
@@ -49,16 +49,13 @@ module.exports = function rehypeCustomPlugin(options = {}) {
 
     // Add icon to external links
     if (externalLinkIcon) {
-      visit(tree, 'element', (node) => {
+      visit(tree, 'element', node => {
         if (node.tagName === 'a' && node.properties.href) {
           const href = node.properties.href;
 
           if (href.startsWith('http') && !href.includes(options.siteUrl || '')) {
             // Add external link class
-            node.properties.className = [
-              ...(node.properties.className || []),
-              'external-link'
-            ];
+            node.properties.className = [...(node.properties.className || []), 'external-link'];
 
             // Add rel attributes for security
             node.properties.rel = 'noopener noreferrer';
@@ -69,7 +66,7 @@ module.exports = function rehypeCustomPlugin(options = {}) {
               type: 'element',
               tagName: 'span',
               properties: { className: ['external-icon'] },
-              children: [{ type: 'text', value: ' ↗' }]
+              children: [{ type: 'text', value: ' ↗' }],
             });
           }
         }
@@ -100,13 +97,11 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          rehypePlugins: [
-            require('./plugins/my-rehype-plugin')
-          ]
-        }
-      }
-    ]
-  ]
+          rehypePlugins: [require('./plugins/my-rehype-plugin')],
+        },
+      },
+    ],
+  ],
 };
 
 // With options
@@ -117,23 +112,27 @@ module.exports = {
       {
         docs: {
           rehypePlugins: [
-            [require('./plugins/my-rehype-plugin'), {
-              wrapperClass: 'custom-wrapper',
-              addLazyLoading: true,
-              externalLinkIcon: true,
-              siteUrl: 'https://mysite.com'
-            }]
-          ]
-        }
-      }
-    ]
-  ]
+            [
+              require('./plugins/my-rehype-plugin'),
+              {
+                wrapperClass: 'custom-wrapper',
+                addLazyLoading: true,
+                externalLinkIcon: true,
+                siteUrl: 'https://mysite.com',
+              },
+            ],
+          ],
+        },
+      },
+    ],
+  ],
 };
 ```
 
 ## Common HTML Node Types
 
 ### Element Nodes
+
 ```javascript
 {
   type: 'element',
@@ -148,6 +147,7 @@ module.exports = {
 ```
 
 ### Text Nodes
+
 ```javascript
 {
   type: 'text',
@@ -156,6 +156,7 @@ module.exports = {
 ```
 
 ### Common Elements
+
 ```javascript
 // Link
 {
@@ -200,13 +201,11 @@ const { h } = require('hastscript');
 // Create elements
 const div = h('div', { className: 'container' }, [
   h('p', 'Paragraph text'),
-  h('a', { href: '#' }, 'Link')
+  h('a', { href: '#' }, 'Link'),
 ]);
 
 // Shorthand with classes and IDs
-const header = h('div.header#main', [
-  h('h1.title', 'Page Title')
-]);
+const header = h('div.header#main', [h('h1.title', 'Page Title')]);
 
 // Result:
 // <div class="header" id="main">
@@ -234,9 +233,9 @@ module.exports = function rehypeCodeWrapper() {
         const wrapper = h('div.code-block-wrapper', { dataLanguage: language }, [
           h('div.code-header', [
             h('span.language-label', language),
-            h('button.copy-button', { type: 'button' }, 'Copy')
+            h('button.copy-button', { type: 'button' }, 'Copy'),
           ]),
-          node
+          node,
         ]);
 
         parent.children[index] = wrapper;
@@ -257,7 +256,7 @@ module.exports = function rehypeLazyImages(options = {}) {
   const { blurDataURL = 'data:image/...' } = options;
 
   return function transformer(tree) {
-    visit(tree, 'element', (node) => {
+    visit(tree, 'element', node => {
       if (node.tagName === 'img') {
         // Add lazy loading
         node.properties.loading = 'lazy';
@@ -278,13 +277,13 @@ module.exports = function rehypeLazyImages(options = {}) {
               tagName: 'source',
               properties: {
                 srcset: node.properties.src.replace(/\.(jpg|png)$/, '.webp'),
-                type: 'image/webp'
+                type: 'image/webp',
               },
-              children: []
+              children: [],
             },
             // Original img
-            node
-          ]
+            node,
+          ],
         };
 
         return picture;
@@ -303,12 +302,11 @@ const { visit } = require('unist-util-visit');
 
 module.exports = function rehypeA11y() {
   return function transformer(tree) {
-    visit(tree, 'element', (node) => {
+    visit(tree, 'element', node => {
       // Add ARIA labels to links without text
       if (node.tagName === 'a') {
-        const hasText = node.children.some(child =>
-          child.type === 'text' ||
-          (child.type === 'element' && child.tagName !== 'img')
+        const hasText = node.children.some(
+          child => child.type === 'text' || (child.type === 'element' && child.tagName !== 'img')
         );
 
         if (!hasText) {
@@ -317,7 +315,8 @@ module.exports = function rehypeA11y() {
 
         // Mark external links
         if (node.properties.href?.startsWith('http')) {
-          node.properties.ariaLabel = `${node.properties.ariaLabel || ''} (opens in new tab)`.trim();
+          node.properties.ariaLabel =
+            `${node.properties.ariaLabel || ''} (opens in new tab)`.trim();
         }
       }
 
@@ -349,7 +348,7 @@ module.exports = function rehypeReadingTime() {
     let wordCount = 0;
 
     // Count words
-    visit(tree, 'text', (node) => {
+    visit(tree, 'text', node => {
       wordCount += node.value.split(/\s+/).length;
     });
 
@@ -362,9 +361,7 @@ module.exports = function rehypeReadingTime() {
     // Insert reading time element at the beginning
     if (tree.children[0]) {
       tree.children.unshift(
-        h('div.reading-time', { dataMinutes: readingTime }, [
-          h('span', `${readingTime} min read`)
-        ])
+        h('div.reading-time', { dataMinutes: readingTime }, [h('span', `${readingTime} min read`)])
       );
     }
 
@@ -384,16 +381,14 @@ module.exports = function rehypeTables() {
     visit(tree, 'element', (node, index, parent) => {
       if (node.tagName === 'table') {
         // Wrap table in responsive container
-        const wrapper = h('div.table-wrapper', [
-          h('div.table-scroll', [node])
-        ]);
+        const wrapper = h('div.table-wrapper', [h('div.table-scroll', [node])]);
 
         // Add sortable classes to headers
-        visit(node, 'element', (headerNode) => {
+        visit(node, 'element', headerNode => {
           if (headerNode.tagName === 'th') {
             headerNode.properties.className = [
               ...(headerNode.properties.className || []),
-              'sortable'
+              'sortable',
             ];
             headerNode.properties.tabIndex = 0;
           }
@@ -453,10 +448,9 @@ const rehype = require('rehype');
 const customPlugin = require('../index');
 
 describe('Rehype Custom Plugin', () => {
-  const processor = rehype()
-    .use(customPlugin, {
-      addLazyLoading: true
-    });
+  const processor = rehype().use(customPlugin, {
+    addLazyLoading: true,
+  });
 
   it('adds lazy loading to images', async () => {
     const input = '<img src="/photo.jpg" alt="Photo" />';
@@ -488,28 +482,34 @@ describe('Rehype Custom Plugin', () => {
 ## Common Use Cases
 
 ### Responsive Images
+
 Add `srcset`, lazy loading, and blur placeholders.
 
 ### Code Block Enhancement
+
 Add copy buttons, language labels, line numbers.
 
 ### Link Processing
+
 Add icons for external links, security attributes, analytics tracking.
 
 ### Accessibility
+
 ARIA labels, semantic HTML, keyboard navigation.
 
 ### Performance
+
 Lazy loading, async decoding, resource hints.
 
 ### SEO
+
 Structured data, meta tags, Open Graph images.
 
 ## Debugging
 
 ```javascript
 // Log all HTML elements
-visit(tree, 'element', (node) => {
+visit(tree, 'element', node => {
   console.log(node.tagName, node.properties);
 });
 
@@ -518,4 +518,5 @@ console.log(JSON.stringify(tree, null, 2));
 ```
 
 Use online AST explorers:
+
 - https://astexplorer.net/ (select "HTML" and "rehype")

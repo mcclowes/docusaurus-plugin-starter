@@ -47,10 +47,7 @@ module.exports = function myPlugin(context, options) {
       });
 
       // Create data file for component props
-      const dataPath = await createData(
-        'my-data.json',
-        JSON.stringify(content)
-      );
+      const dataPath = await createData('my-data.json', JSON.stringify(content));
 
       addRoute({
         path: '/data-page',
@@ -115,9 +112,7 @@ module.exports = function myPlugin(context, options) {
 
     // Provide client modules (run in browser)
     getClientModules() {
-      return [
-        path.resolve(__dirname, './clientModule.js'),
-      ];
+      return [path.resolve(__dirname, './clientModule.js')];
     },
 
     // Get theme path
@@ -136,10 +131,13 @@ module.exports = {
   plugins: [
     './plugins/my-plugin',
     // Or with options
-    ['./plugins/my-plugin', {
-      customOption: 'value'
-    }]
-  ]
+    [
+      './plugins/my-plugin',
+      {
+        customOption: 'value',
+      },
+    ],
+  ],
 };
 
 // npm package
@@ -147,17 +145,21 @@ module.exports = {
   plugins: [
     '@org/docusaurus-plugin-name',
     // Or with options
-    ['@org/docusaurus-plugin-name', {
-      apiKey: 'xxx',
-      enabled: true
-    }]
-  ]
+    [
+      '@org/docusaurus-plugin-name',
+      {
+        apiKey: 'xxx',
+        enabled: true,
+      },
+    ],
+  ],
 };
 ```
 
 ## Lifecycle Hooks
 
 ### loadContent()
+
 Load data from files, APIs, or databases.
 
 ```javascript
@@ -174,6 +176,7 @@ async loadContent() {
 ```
 
 ### contentLoaded({ content, actions })
+
 Process loaded content and create routes/global data.
 
 ```javascript
@@ -203,6 +206,7 @@ async contentLoaded({ content, actions }) {
 ```
 
 ### postBuild({ outDir, content })
+
 Run after build completes. Generate additional files.
 
 ```javascript
@@ -218,6 +222,7 @@ async postBuild({ outDir, content }) {
 ```
 
 ### injectHtmlTags()
+
 Add scripts, styles, meta tags to HTML.
 
 ```javascript
@@ -263,6 +268,7 @@ injectHtmlTags({ content }) {
 ```
 
 ### configureWebpack(config, isServer, utils)
+
 Modify webpack configuration.
 
 ```javascript
@@ -291,6 +297,7 @@ configureWebpack(config, isServer, utils) {
 ```
 
 ### getClientModules()
+
 Provide modules that run in the browser.
 
 ```javascript
@@ -391,7 +398,7 @@ module.exports = function rssPlugin(context, options) {
       });
 
       // Add posts to feed
-      posts.slice(0, limit).forEach((post) => {
+      posts.slice(0, limit).forEach(post => {
         feed.item({
           title: post.title,
           description: post.description,
@@ -401,10 +408,7 @@ module.exports = function rssPlugin(context, options) {
       });
 
       // Write RSS file
-      await fs.writeFile(
-        path.join(outDir, feedPath),
-        feed.xml({ indent: true })
-      );
+      await fs.writeFile(path.join(outDir, feedPath), feed.xml({ indent: true }));
     },
   };
 };
@@ -429,12 +433,9 @@ module.exports = function customPagesPlugin(context, options) {
 
       const pages = await Promise.all(
         files
-          .filter((file) => file.endsWith('.md'))
-          .map(async (file) => {
-            const content = await fs.readFile(
-              path.join(pagesPath, file),
-              'utf-8'
-            );
+          .filter(file => file.endsWith('.md'))
+          .map(async file => {
+            const content = await fs.readFile(path.join(pagesPath, file), 'utf-8');
             const { data, content: body } = matter(content);
 
             return {
@@ -452,11 +453,8 @@ module.exports = function customPagesPlugin(context, options) {
       const { addRoute, createData } = actions;
 
       await Promise.all(
-        content.map(async (page) => {
-          const dataPath = await createData(
-            `page-${page.id}.json`,
-            JSON.stringify(page)
-          );
+        content.map(async page => {
+          const dataPath = await createData(`page-${page.id}.json`, JSON.stringify(page));
 
           addRoute({
             path: `/${page.slug || page.id}`,
@@ -507,7 +505,7 @@ module.exports = function sitemapPlugin(context, options) {
       });
 
       // Add routes to sitemap
-      routes.forEach((route) => {
+      routes.forEach(route => {
         if (!route.path.includes('*') && !route.path.includes(':')) {
           sitemap.write({
             url: route.path,
@@ -542,18 +540,14 @@ module.exports = function envVarsPlugin(context, options) {
     configureWebpack() {
       const envVars = {};
 
-      allowedVars.forEach((varName) => {
+      allowedVars.forEach(varName => {
         if (process.env[varName]) {
-          envVars[`process.env.${varName}`] = JSON.stringify(
-            process.env[varName]
-          );
+          envVars[`process.env.${varName}`] = JSON.stringify(process.env[varName]);
         }
       });
 
       return {
-        plugins: [
-          new webpack.DefinePlugin(envVars),
-        ],
+        plugins: [new webpack.DefinePlugin(envVars)],
       };
     },
   };
@@ -561,10 +555,13 @@ module.exports = function envVarsPlugin(context, options) {
 
 // Usage in docusaurus.config.js
 plugins: [
-  ['./plugins/env-vars', {
-    allowedVars: ['API_URL', 'ANALYTICS_ID']
-  }]
-]
+  [
+    './plugins/env-vars',
+    {
+      allowedVars: ['API_URL', 'ANALYTICS_ID'],
+    },
+  ],
+];
 ```
 
 ## Package Structure
@@ -593,10 +590,7 @@ export interface PluginOptions {
   enabled?: boolean;
 }
 
-export default function plugin(
-  context: LoadContext,
-  options: PluginOptions
-): Plugin<any>;
+export default function plugin(context: LoadContext, options: PluginOptions): Plugin<any>;
 
 export function validateOptions({
   options,
@@ -663,6 +657,7 @@ describe('My Plugin', () => {
 ## Common Patterns
 
 ### Global Data Access
+
 Use `useGlobalData()` hook in React components:
 
 ```javascript
@@ -675,6 +670,7 @@ function MyComponent() {
 ```
 
 ### Plugin Data Access
+
 Use `usePluginData()` hook:
 
 ```javascript

@@ -64,13 +64,7 @@ docusaurus-plugin-name/
   "main": "index.js",
   "types": "index.d.ts",
 
-  "keywords": [
-    "docusaurus",
-    "remark",
-    "plugin",
-    "glossary",
-    "documentation"
-  ],
+  "keywords": ["docusaurus", "remark", "plugin", "glossary", "documentation"],
 
   "author": "Your Name <email@example.com>",
   "license": "MIT",
@@ -86,12 +80,7 @@ docusaurus-plugin-name/
 
   "homepage": "https://github.com/username/docusaurus-plugin-glossary#readme",
 
-  "files": [
-    "index.js",
-    "index.d.ts",
-    "lib/",
-    "src/"
-  ],
+  "files": ["index.js", "index.d.ts", "lib/", "src/"],
 
   "dependencies": {
     "unist-util-visit": "^4.0.0"
@@ -132,13 +121,7 @@ docusaurus-plugin-name/
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
 
-  "keywords": [
-    "docusaurus",
-    "plugin",
-    "content",
-    "changelog",
-    "release-notes"
-  ],
+  "keywords": ["docusaurus", "plugin", "content", "changelog", "release-notes"],
 
   "author": "Organization Name",
   "license": "MIT",
@@ -153,12 +136,7 @@ docusaurus-plugin-name/
     "access": "public"
   },
 
-  "files": [
-    "lib/",
-    "theme/",
-    "index.js",
-    "index.d.ts"
-  ],
+  "files": ["lib/", "theme/", "index.js", "index.d.ts"],
 
   "dependencies": {
     "fs-extra": "^11.0.0",
@@ -348,10 +326,7 @@ export interface PluginContent {
   latestVersion: string;
 }
 
-declare const plugin: (
-  context: LoadContext,
-  options: PluginOptions
-) => Plugin<ChangelogEntry[]>;
+declare const plugin: (context: LoadContext, options: PluginOptions) => Plugin<ChangelogEntry[]>;
 
 export default plugin;
 
@@ -371,11 +346,7 @@ export function validateOptions(
 module.exports = {
   testEnvironment: 'node',
   testMatch: ['**/__tests__/**/*.js', '**/*.test.js'],
-  collectCoverageFrom: [
-    'src/**/*.js',
-    '!src/**/*.test.js',
-    '!**/node_modules/**',
-  ],
+  collectCoverageFrom: ['src/**/*.js', '!src/**/*.test.js', '!**/node_modules/**'],
   coverageThreshold: {
     global: {
       branches: 80,
@@ -401,11 +372,7 @@ module.exports = {
     node: true,
     es2020: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2020,
@@ -572,7 +539,7 @@ jobs:
 
 ## README.md Template
 
-```markdown
+````markdown
 # docusaurus-plugin-name
 
 > Brief description of what the plugin does
@@ -584,6 +551,7 @@ npm install docusaurus-plugin-name
 # or
 yarn add docusaurus-plugin-name
 ```
+````
 
 ## Usage
 
@@ -606,10 +574,10 @@ module.exports = {
 
 ## Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `option1` | `string` | `'default'` | Description |
-| `option2` | `boolean` | `false` | Description |
+| Option    | Type      | Default     | Description |
+| --------- | --------- | ----------- | ----------- |
+| `option1` | `string`  | `'default'` | Description |
+| `option2` | `boolean` | `false`     | Description |
 
 ## Examples
 
@@ -640,7 +608,8 @@ Description...
 ## License
 
 MIT
-```
+
+````
 
 ## Versioning and Publishing
 
@@ -668,7 +637,7 @@ npm publish
 
 # For scoped packages
 npm publish --access public
-```
+````
 
 ## Best Practices
 

@@ -1,10 +1,10 @@
-import path from 'path'
-import { fileURLToPath } from 'url'
-import type { LoadContext, Plugin } from '@docusaurus/types'
-import type { PluginStarterOptions, StarterPluginContent } from './types'
+import path from 'path';
+import { fileURLToPath } from 'url';
+import type { LoadContext, Plugin } from '@docusaurus/types';
+import type { PluginStarterOptions, StarterPluginContent } from './types';
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default function pluginStarter(
   _context: LoadContext,
@@ -14,29 +14,26 @@ export default function pluginStarter(
     enabled: options.enabled ?? true,
     greetingMessage: options.greetingMessage ?? 'Hello from plugin-starter!',
     routePath: options.routePath ?? '/starter',
-  }
+  };
 
   return {
     name: 'docusaurus-plugin-starter',
 
     async loadContent() {
-      if (!resolvedOptions.enabled) return undefined
+      if (!resolvedOptions.enabled) return undefined;
 
       return {
         greeting: resolvedOptions.greetingMessage,
         routePath: resolvedOptions.routePath,
-      }
+      };
     },
 
     async contentLoaded({ content, actions }) {
-      if (!content) return
+      if (!content) return;
 
-      const { createData, addRoute, setGlobalData } = actions
+      const { createData, addRoute, setGlobalData } = actions;
 
-      const dataPath = await createData(
-        'starter-data.json',
-        JSON.stringify(content, null, 2)
-      )
+      const dataPath = await createData('starter-data.json', JSON.stringify(content, null, 2));
 
       addRoute({
         path: resolvedOptions.routePath,
@@ -45,19 +42,18 @@ export default function pluginStarter(
         modules: {
           starterData: dataPath,
         },
-      })
+      });
 
-      setGlobalData(content)
+      setGlobalData(content);
     },
 
     getClientModules() {
-      if (!resolvedOptions.enabled) return []
-      return [path.join(__dirname, 'client/index.js')]
+      if (!resolvedOptions.enabled) return [];
+      return [path.join(__dirname, 'client/index.js')];
     },
 
     getThemePath() {
-      return path.join(__dirname, 'theme')
+      return path.join(__dirname, 'theme');
     },
-  }
+  };
 }
-

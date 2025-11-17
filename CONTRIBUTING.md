@@ -11,6 +11,7 @@ Be kind, inclusive, and constructive. We aim to foster a welcoming environment f
 ### Report issues
 
 Open an issue with:
+
 - A concise description of the problem or question
 - Steps to reproduce (if applicable)
 - What you expected to happen and what actually happened
@@ -19,6 +20,7 @@ Open an issue with:
 ### Suggest enhancements
 
 Share your idea by opening an issue that includes:
+
 - The problem you are trying to solve
 - Why it matters for people using the starter
 - Any screenshots, mock-ups, or references that give context
@@ -85,6 +87,7 @@ Edit files in `src/` and run the build script before publishing or testing again
 ## Releases
 
 Maintainers handle releases. Typical steps:
+
 1. Bump the version in `package.json`.
 2. Run the test and build commands.
 3. Update the changelog if necessary.

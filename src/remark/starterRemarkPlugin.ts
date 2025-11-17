@@ -1,16 +1,16 @@
-import { visit } from 'unist-util-visit'
-import type { Plugin } from 'unified'
+import { visit } from 'unist-util-visit';
+import type { Plugin } from 'unified';
 
 export type StarterRemarkPluginOptions = {
   /**
    * Matches text nodes that contain this marker. Defaults to 'TODO'.
    */
-  marker?: string
+  marker?: string;
   /**
    * Replacement text for the marker. Defaults to turning `TODO` into `✅ TODO`.
    */
-  replacement?: string
-}
+  replacement?: string;
+};
 
 /**
  * A tiny remark plugin provided as an example for the starter template.
@@ -20,25 +20,22 @@ export type StarterRemarkPluginOptions = {
  * the implementation with whatever behaviour your plugin needs.
  */
 export const starterRemarkPlugin: Plugin<[StarterRemarkPluginOptions?]> = (options = {}) => {
-  const marker = options.marker ?? 'TODO'
-  const replacement = options.replacement ?? '✅ TODO'
+  const marker = options.marker ?? 'TODO';
+  const replacement = options.replacement ?? '✅ TODO';
 
   return tree => {
     visit(tree, 'text', (node: any) => {
-      if (typeof node.value !== 'string') return
-      if (!node.value.includes(marker)) return
+      if (typeof node.value !== 'string') return;
+      if (!node.value.includes(marker)) return;
 
-      node.value = node.value.replaceAll(marker, replacement)
-    })
-  }
-}
+      node.value = node.value.replaceAll(marker, replacement);
+    });
+  };
+};
 
 /**
  * Convenience helper so the plugin can be configured succinctly from Docusaurus config.
  */
 export function createStarterRemarkPlugin(options?: StarterRemarkPluginOptions) {
-  return [starterRemarkPlugin, options ?? {}] as const
+  return [starterRemarkPlugin, options ?? {}] as const;
 }
-
-
-

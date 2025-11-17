@@ -1,7 +1,7 @@
-export { default } from './plugin'
-export type { PluginStarterOptions } from './types'
+export { default } from './plugin';
+export type { PluginStarterOptions } from './types';
 export {
   starterRemarkPlugin,
   createStarterRemarkPlugin,
   type StarterRemarkPluginOptions,
-} from './remark/starterRemarkPlugin'
+} from './remark/starterRemarkPlugin';

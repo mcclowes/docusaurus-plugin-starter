@@ -66,17 +66,20 @@ module.exports = {
   themes: [
     './plugins/theme-custom',
     // Or npm package
-    '@org/docusaurus-theme-custom'
+    '@org/docusaurus-theme-custom',
   ],
 
   // Or with options
   themes: [
-    ['./plugins/theme-custom', {
-      customColors: {
-        primary: '#007bff',
-        secondary: '#6c757d',
-      }
-    }]
+    [
+      './plugins/theme-custom',
+      {
+        customColors: {
+          primary: '#007bff',
+          secondary: '#6c757d',
+        },
+      },
+    ],
   ],
 };
 ```
@@ -106,12 +109,14 @@ npm run swizzle @docusaurus/theme-classic Navbar -- --typescript
 ### Ejecting vs Wrapping
 
 **Ejecting (--eject)**
+
 - Full control over component
 - Copy entire component to your src/theme
 - ⚠️ Breaks with Docusaurus updates
 - Use for major customizations
 
 **Wrapping (--wrap)**
+
 - Wraps original component
 - Preserve default behavior
 - ✅ Safer, updates compatible
@@ -175,33 +180,53 @@ export default function Footer() {
         <div className="footer-section">
           <h4>Documentation</h4>
           <ul>
-            <li><Link to="/docs/intro">Getting Started</Link></li>
-            <li><Link to="/docs/api">API Reference</Link></li>
-            <li><Link to="/docs/guides">Guides</Link></li>
+            <li>
+              <Link to="/docs/intro">Getting Started</Link>
+            </li>
+            <li>
+              <Link to="/docs/api">API Reference</Link>
+            </li>
+            <li>
+              <Link to="/docs/guides">Guides</Link>
+            </li>
           </ul>
         </div>
 
         <div className="footer-section">
           <h4>Community</h4>
           <ul>
-            <li><a href={siteConfig.discord}>Discord</a></li>
-            <li><a href={siteConfig.twitter}>Twitter</a></li>
-            <li><a href={siteConfig.github}>GitHub</a></li>
+            <li>
+              <a href={siteConfig.discord}>Discord</a>
+            </li>
+            <li>
+              <a href={siteConfig.twitter}>Twitter</a>
+            </li>
+            <li>
+              <a href={siteConfig.github}>GitHub</a>
+            </li>
           </ul>
         </div>
 
         <div className="footer-section">
           <h4>More</h4>
           <ul>
-            <li><Link to="/blog">Blog</Link></li>
-            <li><a href="/changelog">Changelog</a></li>
-            <li><Link to="/privacy">Privacy Policy</Link></li>
+            <li>
+              <Link to="/blog">Blog</Link>
+            </li>
+            <li>
+              <a href="/changelog">Changelog</a>
+            </li>
+            <li>
+              <Link to="/privacy">Privacy Policy</Link>
+            </li>
           </ul>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>© {currentYear} {siteConfig.organizationName}. All rights reserved.</p>
+        <p>
+          © {currentYear} {siteConfig.organizationName}. All rights reserved.
+        </p>
       </div>
     </footer>
   );
@@ -229,9 +254,7 @@ export default {
   // Add custom components
   Highlight,
   Callout: ({ type = 'info', children }) => (
-    <div className={`callout callout-${type}`}>
-      {children}
-    </div>
+    <div className={`callout callout-${type}`}>{children}</div>
   ),
 
   YouTube: ({ id }) => (
@@ -448,10 +471,7 @@ export interface ThemeOptions {
   };
 }
 
-declare const theme: (
-  context: LoadContext,
-  options: ThemeOptions
-) => Plugin<void>;
+declare const theme: (context: LoadContext, options: ThemeOptions) => Plugin<void>;
 
 export default theme;
 ```
@@ -497,13 +517,7 @@ import React from 'react';
 import { DocSearch } from '@docsearch/react';
 
 export default function SearchBar() {
-  return (
-    <DocSearch
-      appId="YOUR_APP_ID"
-      indexName="YOUR_INDEX_NAME"
-      apiKey="YOUR_SEARCH_API_KEY"
-    />
-  );
+  return <DocSearch appId="YOUR_APP_ID" indexName="YOUR_INDEX_NAME" apiKey="YOUR_SEARCH_API_KEY" />;
 }
 ```
 
@@ -519,11 +533,8 @@ export default function DocsVersionDropdown() {
   const activeVersion = useActiveVersion();
 
   return (
-    <select
-      value={activeVersion.name}
-      onChange={(e) => window.location.href = e.target.value}
-    >
-      {versions.map((version) => (
+    <select value={activeVersion.name} onChange={e => (window.location.href = e.target.value)}>
+      {versions.map(version => (
         <option key={version.name} value={version.path}>
           {version.label}
         </option>
@@ -536,11 +547,13 @@ export default function DocsVersionDropdown() {
 ## Debugging
 
 Check which components can be swizzled:
+
 ```bash
 npm run swizzle @docusaurus/theme-classic -- --list
 ```
 
 Find component source code:
+
 ```bash
 # Located in node_modules/@docusaurus/theme-classic/src/theme/
 ls node_modules/@docusaurus/theme-classic/src/theme/

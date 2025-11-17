@@ -1,18 +1,18 @@
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
-import { usePluginData } from '@docusaurus/useGlobalData'
-import styles from './styles.module.css'
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { usePluginData } from '@docusaurus/useGlobalData';
+import styles from './styles.module.css';
 
 type StarterGlobalData = {
-  greeting: string
-  routePath: string
-}
+  greeting: string;
+  routePath: string;
+};
 
 export default function StarterMessage() {
-  const { siteConfig } = useDocusaurusContext()
-  const pluginData = usePluginData('docusaurus-plugin-starter') as StarterGlobalData | undefined
+  const { siteConfig } = useDocusaurusContext();
+  const pluginData = usePluginData('docusaurus-plugin-starter') as StarterGlobalData | undefined;
 
   if (!pluginData) {
-    return null
+    return null;
   }
 
   return (
@@ -29,7 +29,5 @@ export default function StarterMessage() {
         </p>
       </div>
     </div>
-  )
+  );
 }
-
-

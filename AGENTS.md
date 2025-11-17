@@ -13,6 +13,7 @@ Claude skills are specialized agents that provide domain-specific knowledge and 
 **When to use:** Working with docusaurus-plugin-glossary configuration, managing glossary terms, troubleshooting issues, or explaining features.
 
 **What it helps with:**
+
 - Configuring the plugin in `docusaurus.config.js`
 - Creating and managing glossary JSON files
 - Troubleshooting auto-linking issues
@@ -20,6 +21,7 @@ Claude skills are specialized agents that provide domain-specific knowledge and 
 - Debugging term detection and tooltip behavior
 
 **Example use cases:**
+
 - "Why aren't my glossary terms auto-linking?"
 - "How do I add a new glossary term?"
 - "Configure the glossary plugin with custom route path"
@@ -29,6 +31,7 @@ Claude skills are specialized agents that provide domain-specific knowledge and 
 **When to use:** Developing and building Docusaurus plugins, especially understanding the plugin architecture used in this project.
 
 **What it helps with:**
+
 - Using `getClientModules()` for automatic DOM enhancement
 - Implementing lifecycle hooks (`loadContent`, `contentLoaded`, etc.)
 - SSR safety with `ExecutionEnvironment.canUseDOM`
@@ -36,6 +39,7 @@ Claude skills are specialized agents that provide domain-specific knowledge and 
 - Understanding client vs server code separation
 
 **Example use cases:**
+
 - "How do I add a new client module?"
 - "Implement a new lifecycle hook for the plugin"
 - "Fix SSR errors in the plugin"
@@ -45,6 +49,7 @@ Claude skills are specialized agents that provide domain-specific knowledge and 
 **When to use:** Creating or modifying Docusaurus plugins, particularly remark/rehype plugins for markdown/HTML transformation.
 
 **What it helps with:**
+
 - Creating remark plugins for markdown transformation
 - Building rehype plugins for HTML processing
 - Understanding AST traversal with `unist-util-visit`
@@ -52,6 +57,7 @@ Claude skills are specialized agents that provide domain-specific knowledge and 
 - Theme plugins and component swizzling
 
 **Example use cases:**
+
 - "Create a new remark plugin for custom syntax"
 - "Modify the glossary-terms remark plugin"
 - "Add a new theme component"
@@ -61,12 +67,14 @@ Claude skills are specialized agents that provide domain-specific knowledge and 
 **When to use:** Validating or modifying `docusaurus.config.js` or `docusaurus.config.ts` files.
 
 **What it helps with:**
+
 - Plugin configuration
 - Preset configuration
 - Remark/rehype plugin setup
 - Docusaurus configuration best practices
 
 **Example use cases:**
+
 - "Validate my docusaurus.config.js"
 - "Add the glossary plugin to the config"
 - "Configure remark plugins in the preset"
@@ -76,12 +84,14 @@ Claude skills are specialized agents that provide domain-specific knowledge and 
 **When to use:** Swizzling Docusaurus theme components or editing theme elements.
 
 **What it helps with:**
+
 - Component swizzling strategies
 - Customizing theme components
 - Understanding theme structure
 - Overriding default styling
 
 **Example use cases:**
+
 - "Swizzle the GlossaryTerm component"
 - "Customize the glossary page layout"
 - "Override default theme styles"
@@ -111,6 +121,7 @@ This project uses the Claude Skills system which follows a progressive disclosur
 - **Level 3 (Deep Dive)**: Detailed reference documentation in `references/` directory
 
 Each skill is located in `.claude/skills/<skill-name>/` and contains:
+
 - `SKILL.md` - Quick reference and core principles
 - `README.md` - Skill metadata and purpose
 - `references/` - Detailed documentation files
@@ -124,12 +135,14 @@ In addition to specialized skills, Claude Code provides general-purpose agents:
 **When to use:** Finding files, searching code, or understanding codebase structure.
 
 **What it does:**
+
 - Fast codebase exploration
 - Pattern-based file finding
 - Keyword code search
 - Architectural understanding
 
 **Usage:**
+
 ```
 Explore the codebase to understand how remark plugins work
 ```
@@ -139,12 +152,14 @@ Explore the codebase to understand how remark plugins work
 **When to use:** Planning complex multi-step implementations before coding.
 
 **What it does:**
+
 - Analyzes requirements
 - Creates implementation plans
 - Identifies dependencies
 - Suggests architecture approaches
 
 **Usage:**
+
 ```
 Plan how to add support for glossary term aliases
 ```
@@ -183,15 +198,17 @@ See individual skill files for examples and the progressive disclosure guideline
 When users ask you to perform tasks, check if any of the available skills below can help complete the task more effectively. Skills provide specialized capabilities and domain knowledge.
 
 How to use skills:
+
 - Invoke: Bash("openskills read <skill-name>")
 - The skill content will load with detailed instructions on how to complete the task
 - Base directory provided in output for resolving bundled resources (references/, scripts/, assets/)
 
 Usage notes:
+
 - Only use skills listed in <available_skills> below
 - Do not invoke a skill that is already loaded in your context
 - Each skill invocation is stateless
-</usage>
+  </usage>
 
 <available_skills>
 
@@ -226,6 +243,7 @@ Usage notes:
 </skill>
 
 </available_skills>
+
 <!-- SKILLS_TABLE_END -->
 
 </skills_system>

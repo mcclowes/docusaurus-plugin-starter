@@ -46,11 +46,12 @@ export default (function () {
       const elements = document.querySelectorAll(options.selector);
 
       // Apply theme-aware styling
-      const theme = options.theme === 'auto'
-        ? (document.documentElement.getAttribute('data-theme') || 'light')
-        : options.theme;
+      const theme =
+        options.theme === 'auto'
+          ? document.documentElement.getAttribute('data-theme') || 'light'
+          : options.theme;
 
-      elements.forEach((element) => {
+      elements.forEach(element => {
         if (element instanceof HTMLElement) {
           element.setAttribute('data-plugin-theme', theme);
           // Apply theme-specific enhancements

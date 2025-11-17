@@ -13,7 +13,7 @@ const libThemeDir = join(rootDir, 'lib', 'theme');
 async function copyThemeFiles() {
   // Ensure lib/theme directory exists
   await fs.ensureDir(libThemeDir);
-  
+
   // The starter no longer copies additional theme files here. Keep the script
   // as a placeholder in case you want to add custom copy logic.
 }
@@ -22,4 +22,3 @@ copyThemeFiles().catch(error => {
   console.error('Failed to copy theme files:', error);
   process.exit(1);
 });
-
