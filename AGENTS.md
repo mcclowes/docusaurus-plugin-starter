@@ -1,6 +1,6 @@
 # Claude Code Agents & Skills
 
-This document describes the specialized Claude Code agents and skills available for this project. These agents provide context-aware assistance for working with the docusaurus-plugin-glossary codebase.
+This document describes the specialized Claude Code agents and skills available for this project. These agents provide context-aware assistance for working with the docusaurus-plugin-starter codebase.
 
 ## What are Claude Skills?
 
@@ -98,16 +98,10 @@ Claude skills are specialized agents that provide domain-specific knowledge and 
 
 ## How to Use Skills
 
-In Claude Code, you can invoke a skill by mentioning it in your conversation or by using the skill command:
+Claude Code automatically discovers and activates relevant skills based on the task at hand. You can also explicitly request a skill:
 
 ```
 Use the docusaurus-glossary skill to help me configure the plugin
-```
-
-or
-
-```
-/skill docusaurus-glossary
 ```
 
 Skills automatically load relevant context and provide specialized assistance for the task at hand.
@@ -187,63 +181,4 @@ See individual skill files for examples and the progressive disclosure guideline
 
 - [README.md](README.md) - Plugin overview and usage
 - [CONTRIBUTING.md](CONTRIBUTING.md) - Development guide and contribution guidelines
-- [.claude/skills/](/.claude/skills/) - Skill definitions and reference docs
-
-<skills_system priority="1">
-
-## Available Skills
-
-<!-- SKILLS_TABLE_START -->
-<usage>
-When users ask you to perform tasks, check if any of the available skills below can help complete the task more effectively. Skills provide specialized capabilities and domain knowledge.
-
-How to use skills:
-
-- Invoke: Bash("openskills read <skill-name>")
-- The skill content will load with detailed instructions on how to complete the task
-- Base directory provided in output for resolving bundled resources (references/, scripts/, assets/)
-
-Usage notes:
-
-- Only use skills listed in <available_skills> below
-- Do not invoke a skill that is already loaded in your context
-- Each skill invocation is stateless
-  </usage>
-
-<available_skills>
-
-<skill>
-<name>docusaurus-config</name>
-<description>Use when working with docusaurus.config.js/ts files to validate or modify Docusaurus configuration</description>
-<location>project</location>
-</skill>
-
-<skill>
-<name>docusaurus-glossary</name>
-<description>Use when working with docusaurus-plugin-glossary to configure, manage glossary terms, troubleshoot issues, and explain features</description>
-<location>project</location>
-</skill>
-
-<skill>
-<name>docusaurus-plugin-dev</name>
-<description>Helps develop and build Docusaurus plugins using this starter template</description>
-<location>project</location>
-</skill>
-
-<skill>
-<name>docusaurus-plugins</name>
-<description>Use when creating Docusaurus plugins (remark, rehype, theme, content, lifecycle) to extend markdown, modify HTML, or add custom functionality</description>
-<location>project</location>
-</skill>
-
-<skill>
-<name>docusaurus-themes</name>
-<description>Use when swizzling Docusaurus theme components and editing theme elements</description>
-<location>project</location>
-</skill>
-
-</available_skills>
-
-<!-- SKILLS_TABLE_END -->
-
-</skills_system>
+- [.claude/skills/](.claude/skills/) - Skill definitions and reference docs

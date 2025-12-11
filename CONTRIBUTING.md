@@ -84,14 +84,24 @@ Edit files in `src/` and run the build script before publishing or testing again
 4. Describe the change clearly in the PR template, including testing steps.
 5. Address review feedback promptly—collaboration is the goal.
 
+## Changelog
+
+We maintain a [CHANGELOG.md](CHANGELOG.md) following [Keep a Changelog](https://keepachangelog.com/) format. When making changes:
+
+- Add entries under the `[Unreleased]` section
+- Use categories: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`
+- Write entries from the user's perspective
+- Reference issues/PRs where applicable
+
 ## Releases
 
 Maintainers handle releases. Typical steps:
 
-1. Bump the version in `package.json`.
-2. Run the test and build commands.
-3. Update the changelog if necessary.
-4. Tag the release and publish to npm.
+1. Move `[Unreleased]` entries to a new version section in CHANGELOG.md
+2. Bump the version in `package.json`
+3. Run the test and build commands
+4. Commit with message like `chore: release v0.2.0`
+5. Tag the release and publish to npm
 
 ## License
 

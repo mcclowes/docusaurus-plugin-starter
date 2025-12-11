@@ -68,9 +68,9 @@ Pass configuration from plugin to client via `setGlobalData` or inline during bu
 
 For detailed documentation:
 
-- `/home/user/docusaurus-plugin-starter/docs/CLIENT_MODULES.md` - Comprehensive guide
-- `/home/user/docusaurus-plugin-starter/examples/` - Working examples for all patterns
-- `/home/user/docusaurus-plugin-starter/README.md` - Full starter documentation
+- [references/client-modules-guide.md](references/client-modules-guide.md) - Comprehensive client modules guide
+- [README.md](../../../README.md) - Plugin documentation
+- [CONTRIBUTING.md](../../../CONTRIBUTING.md) - Development guide
 
 ## Quick Reference
 
@@ -87,10 +87,10 @@ For detailed documentation:
 
 **Critical Guardrails**:
 
-- ❌ Never import Node modules (`fs`, `path`) in `src/client/*`
-- ✅ Always wrap client code with `ExecutionEnvironment.canUseDOM` check
-- ✅ Use `setTimeout(() => {}, 0)` if DOM elements not immediately available
-- ✅ Clean up previous instances before reinitializing libraries
+- Never import Node modules (`fs`, `path`) in `src/client/*`
+- Always wrap client code with `ExecutionEnvironment.canUseDOM` check
+- Use `setTimeout(() => {}, 0)` if DOM elements not immediately available
+- Clean up previous instances before reinitializing libraries
 
 <!--
 PROGRESSIVE DISCLOSURE GUIDELINES:
