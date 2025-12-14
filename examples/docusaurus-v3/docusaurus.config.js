@@ -1,18 +1,18 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import pluginStarter from '../../dist/index.js';
+import pluginObsidianGraph from '../../dist/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /** @type {import('@docusaurus/types').Config} */
 export default {
-  title: 'Plugin Starter Example',
+  title: 'Obsidian Graph Plugin Example',
   url: 'https://example.com',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'example',
-  projectName: 'plugin-starter-example-site',
+  projectName: 'obsidian-graph-example-site',
   onBrokenLinks: 'throw',
   markdown: {
     hooks: {
@@ -28,7 +28,7 @@ export default {
         docs: {
           sidebarPath: path.resolve(__dirname, './sidebars.js'),
           remarkPlugins: [
-            pluginStarter.createStarterRemarkPlugin({
+            pluginObsidianGraph.createStarterRemarkPlugin({
               marker: 'NOTE',
               replacement: '💡 NOTE',
             }),
@@ -37,7 +37,7 @@ export default {
         blog: false,
         pages: {
           remarkPlugins: [
-            pluginStarter.createStarterRemarkPlugin({
+            pluginObsidianGraph.createStarterRemarkPlugin({
               marker: 'NOTE',
               replacement: '💡 NOTE',
             }),
@@ -55,8 +55,26 @@ export default {
       // Use the local plugin from the repo root
       path.resolve(__dirname, '../../dist'),
       {
-        greetingMessage: 'Welcome to the example site!',
-        routePath: '/starter',
+        // Obsidian Graph plugin options
+        routePath: '/graph',
+        graphTitle: 'Knowledge Graph',
+        docsDir: 'docs',
+        nodeStyle: {
+          radius: 6,
+          color: '#a78bfa',
+          hoverColor: '#c4b5fd',
+          activeColor: '#f472b6',
+        },
+        linkStyle: {
+          color: '#4b5563',
+          width: 1,
+          opacity: 0.6,
+        },
+        simulation: {
+          chargeStrength: -300,
+          linkDistance: 100,
+          centerStrength: 0.05,
+        },
       },
     ],
     // Plugin to configure webpack to ignore Node.js modules
@@ -85,14 +103,12 @@ export default {
     },
   ],
 
-  // remarkPlugins configured via preset (docs/pages)
-
   themeConfig: {
     navbar: {
-      title: 'Plugin Starter',
+      title: 'Obsidian Graph',
       items: [
         { to: '/docs/intro', label: 'Docs', position: 'left' },
-        { to: '/starter', label: 'Starter Route', position: 'left' },
+        { to: '/graph', label: 'Graph', position: 'left' },
       ],
     },
   },

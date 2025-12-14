@@ -1,0 +1,151 @@
+.page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #a78bfa 0%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--ifm-color-emphasis-600);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.graphContainer {
+  height: 70vh;
+  min-height: 500px;
+  max-height: 800px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem;
+}
+
+/* Empty state */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+  color: #6b7280;
+  text-align: center;
+  padding: 2rem;
+}
+
+.emptyIcon {
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+  color: #a78bfa;
+}
+
+.emptyTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+}
+
+.emptyText {
+  font-size: 1rem;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+/* Help section */
+.help {
+  background: var(--ifm-card-background-color);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.helpTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--ifm-heading-color);
+}
+
+.helpGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.helpItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.helpIcon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.helpItem strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--ifm-heading-color);
+  margin-bottom: 0.25rem;
+}
+
+.helpItem p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .graphContainer {
+    height: 60vh;
+    min-height: 400px;
+  }
+
+  .help {
+    padding: 1rem 1.25rem;
+  }
+
+  .helpGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .helpGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .help {
+  background: var(--ifm-background-surface-color);
+  border-color: var(--ifm-color-emphasis-300);
+}

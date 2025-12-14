@@ -40,3 +40,21 @@ declare module '@docusaurus/useGlobalData' {
   };
   export function usePluginData(pluginName: string, pluginId?: string): any;
 }
+
+declare module '@docusaurus/router' {
+  export interface History {
+    push(path: string): void;
+    replace(path: string): void;
+    go(n: number): void;
+    goBack(): void;
+    goForward(): void;
+    location: {
+      pathname: string;
+      search: string;
+      hash: string;
+      state: any;
+    };
+  }
+  export function useHistory(): History;
+  export function useLocation(): History['location'];
+}
