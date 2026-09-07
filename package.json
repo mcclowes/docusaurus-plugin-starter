@@ -46,6 +46,7 @@
     "example:build": "npm --prefix examples/docusaurus-v3 run build",
     "example:serve": "npm --prefix examples/docusaurus-v3 run serve",
     "example:clear": "npm --prefix examples/docusaurus-v3 run clear",
+    "prepare": "husky",
     "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
@@ -75,7 +76,7 @@
     "validate-peer-dependencies": "^2.2.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "devDependencies": {
     "@docusaurus/core": "^3.0.0",
@@ -91,12 +92,23 @@
     "eslint": "^9.15.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
+    "husky": "^9.1.7",
     "jsdom": "^27.1.0",
+    "lint-staged": "^15.5.1",
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
     "tsup": "^8.0.1",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.15.0",
     "vitest": "^2.1.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
   }
 }
