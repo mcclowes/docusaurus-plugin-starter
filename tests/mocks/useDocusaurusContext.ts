@@ -1,3 +1,3 @@
 export default function useDocusaurusContext() {
-  return { siteConfig: { title: 'Test Site' } }
+  return { siteConfig: { title: 'Test Site' } };
 }

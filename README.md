@@ -12,9 +12,9 @@ Use this template as a launchpad: rename things, rip out the examples, and focus
 
 ## Compatibility
 
-| Plugin version | Docusaurus                       | React | Node    |
-| -------------- | -------------------------------- | ----- | ------- |
-| `0.2.x`        | `^3.0.0` (tested up to `3.10.1`) | `^18` | `>=18`  |
+| Plugin version | Docusaurus                       | React | Node   |
+| -------------- | -------------------------------- | ----- | ------ |
+| `0.2.x`        | `^3.0.0` (tested up to `3.10.1`) | `^18` | `>=18` |
 
 `peerDependencies` are deliberately permissive (`@docusaurus/core: ^3.0.0`) so the template stays usable across the v3 line. The "tested up to" cell is the version the maintainer last ran the example site against — bump it when you verify a newer release.
 

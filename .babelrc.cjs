@@ -5,9 +5,7 @@ module.exports = {
   ],
   env: {
     test: {
-      plugins: [
-        require.resolve('./jest/babel-plugin-transform-import-meta.cjs'),
-      ],
+      plugins: [require.resolve('./jest/babel-plugin-transform-import-meta.cjs')],
     },
   },
 };

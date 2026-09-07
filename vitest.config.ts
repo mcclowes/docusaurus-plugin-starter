@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitest/config'
-import path from 'path'
+import { defineConfig } from 'vitest/config';
+import path from 'path';
 
 export default defineConfig({
   resolve: {
@@ -26,4 +26,4 @@ export default defineConfig({
     setupFiles: ['./tests/setup.ts'],
     css: { modules: { classNameStrategy: 'non-scoped' } },
   },
-})
+});
