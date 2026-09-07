@@ -48,11 +48,11 @@ export default {
 
 ## Options
 
-| Option            | Type    | Default                       | Description                   |
-| ----------------- | ------- | ----------------------------- | ----------------------------- |
-| `enabled`         | boolean | `true`                        | Enable/disable the plugin     |
-| `greetingMessage` | string  | `'Hello from plugin-starter!'`| Message shown on starter page |
-| `routePath`       | string  | `'/starter'`                  | URL path for the starter page |
+| Option            | Type    | Default                        | Description                   |
+| ----------------- | ------- | ------------------------------ | ----------------------------- |
+| `enabled`         | boolean | `true`                         | Enable/disable the plugin     |
+| `greetingMessage` | string  | `'Hello from plugin-starter!'` | Message shown on starter page |
+| `routePath`       | string  | `'/starter'`                   | URL path for the starter page |
 
 ## What's Included
 
