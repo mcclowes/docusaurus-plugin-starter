@@ -24,7 +24,16 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - run: npm run test:package
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run format:check
       - run: npm test
+      - name: Use the minimum consumer runtime
+        if: matrix.node-version == '20.x'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Check Node 18 package compatibility
+        if: matrix.node-version == '20.x'
+        run: npm run test:package

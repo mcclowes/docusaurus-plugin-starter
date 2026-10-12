@@ -42,7 +42,8 @@ npm install
 
 - `npm run build` – compile TypeScript and copy assets into `dist/`
 - `npm run watch` – rebuild on changes (ideal while running the example site)
-- `npm test` – run Jest
+- `npm test` – run Vitest source tests
+- `npm run test:package` – check the built ESM and CommonJS exports after `npm run build`
 - `npm run example:start` – launch the bundled Docusaurus example for manual testing
 - `npm run format` / `npm run format:check` – apply or verify Prettier formatting
 
@@ -56,7 +57,7 @@ src/
   remark/                # Example remark plugin
   theme/                 # Theme components exposed for swizzling
 dist/                    # Compiled output shipped to npm
-examples/docusaurus-v3/  # Example site consuming ../../dist
+examples/docusaurus-v3/  # Example site consuming the local plugin package
 scripts/                 # Helper scripts for build/watch flows
 ```
 
@@ -64,8 +65,9 @@ Edit files in `src/` and run the build script before publishing or testing again
 
 ## Testing checklist
 
-- Add or update tests near the code you touched (React components under `src/components` or `src/theme`, plugin logic under `__tests__/`).
+- Add or update tests under `tests/` (React components under `tests/components` or `tests/theme`, plugin logic in `tests/plugin.test.ts`).
 - Run `npm test` and ensure it passes.
+- Run `npm run build && npm run test:package` to check the package consumers will load.
 - Run `npm run example:start` if your change affects runtime behaviour.
 - Keep coverage healthy—try not to reduce it without a strong reason.
 

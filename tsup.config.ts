@@ -1,4 +1,4 @@
-import { defineConfig } from 'tsup'
+import { defineConfig } from 'tsup';
 
 export default defineConfig({
   entry: {
@@ -10,6 +10,9 @@ export default defineConfig({
   },
   dts: true,
   format: ['cjs', 'esm'],
+  shims: true,
+  // Keep the ESM-only visitor usable through the CommonJS exports.
+  noExternal: ['unist-util-visit'],
   sourcemap: true,
   clean: true,
   target: 'es2020',
@@ -26,4 +29,4 @@ export default defineConfig({
   loader: {
     '.css': 'copy',
   },
-})
+});

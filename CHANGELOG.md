@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- CommonJS consumers can load the plugin and remark exports on Node 18 and newer (#49).
 - Updated `.claude/skills/docusaurus-glossary/` to sync with upstream docusaurus-plugin-glossary repo
   - SKILL.md now recommends preset-based configuration
   - configuration.md includes preset and manual configuration options

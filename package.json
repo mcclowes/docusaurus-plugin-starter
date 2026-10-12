@@ -40,13 +40,14 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
+    "test:package": "node --test tests/package.test.mjs",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "example:start": "npm --prefix examples/docusaurus-v3 run start",
     "example:build": "npm --prefix examples/docusaurus-v3 run build",
     "example:serve": "npm --prefix examples/docusaurus-v3 run serve",
     "example:clear": "npm --prefix examples/docusaurus-v3 run clear",
-    "prepublishOnly": "npm run build && npm test"
+    "prepublishOnly": "npm run build && npm test && npm run test:package"
   },
   "keywords": [
     "docusaurus",
