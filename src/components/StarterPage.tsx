@@ -8,14 +8,10 @@ type StarterData = {
 };
 
 type StarterPageProps = {
-  readonly modules: {
-    readonly starterData: StarterData;
-  };
+  readonly starterData: StarterData;
 };
 
-export default function StarterPage({ modules }: StarterPageProps) {
-  const data = modules.starterData;
-
+export default function StarterPage({ starterData: data }: StarterPageProps) {
   return (
     <Layout title="Plugin Starter" description="Example route shipped by the starter plugin">
       <main className={styles.page}>
