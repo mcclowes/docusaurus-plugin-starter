@@ -3,4 +3,4 @@ export default {
   canUseEventListeners: typeof window !== 'undefined',
   canUseIntersectionObserver: typeof window !== 'undefined',
   canUseViewport: typeof window !== 'undefined',
-}
+};

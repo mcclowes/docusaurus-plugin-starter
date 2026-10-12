@@ -24,8 +24,3 @@ module.exports = {
   // End of line
   endOfLine: 'lf',
 };
-
-
-
-
-
