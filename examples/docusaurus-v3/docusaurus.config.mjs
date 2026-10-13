@@ -1,6 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import pluginStarter from '../../dist/index.js';
+import { createStarterRemarkPlugin } from '../../dist/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,7 +28,7 @@ export default {
         docs: {
           sidebarPath: path.resolve(__dirname, './sidebars.js'),
           remarkPlugins: [
-            pluginStarter.createStarterRemarkPlugin({
+            createStarterRemarkPlugin({
               marker: 'NOTE',
               replacement: '💡 NOTE',
             }),
@@ -37,7 +37,7 @@ export default {
         blog: false,
         pages: {
           remarkPlugins: [
-            pluginStarter.createStarterRemarkPlugin({
+            createStarterRemarkPlugin({
               marker: 'NOTE',
               replacement: '💡 NOTE',
             }),

@@ -5,6 +5,19 @@ import { test } from 'node:test';
 
 const require = createRequire(import.meta.url);
 
+test('example configuration loads and transforms docs and pages text', async () => {
+  const { default: config } = await import('../examples/docusaurus-v3/docusaurus.config.mjs');
+  const [, presetOptions] = config.presets.find(([name]) => name === '@docusaurus/preset-classic');
+
+  for (const section of ['docs', 'pages']) {
+    const tree = { type: 'root', children: [{ type: 'text', value: 'NOTE: hello' }] };
+    for (const [remarkPlugin, options] of presetOptions[section].remarkPlugins) {
+      remarkPlugin(options)(tree);
+    }
+    assert.equal(tree.children[0].value, '💡 NOTE: hello', `${section} remark transform`);
+  }
+});
+
 for (const format of ['import', 'require']) {
   const load = name => (format === 'import' ? import(name) : require(name));
 
