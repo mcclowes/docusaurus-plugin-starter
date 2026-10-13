@@ -38,9 +38,11 @@ Share your idea by opening an issue that includes:
 git clone https://github.com/mcclowes/docusaurus-plugin-starter.git
 cd docusaurus-plugin-starter
 npm install
+npm run build
+npm --prefix examples/docusaurus-v3 install
 ```
 
-- `npm run build` – compile TypeScript and copy assets into `dist/`
+- `npm run build` – bundle ESM and CommonJS, generate type declarations, and copy CSS into `dist/`
 - `npm run watch` – rebuild on changes (ideal while running the example site)
 - `npm test` – run Vitest source tests
 - `npm run test:package` – check the built ESM and CommonJS exports after `npm run build`
@@ -58,7 +60,8 @@ src/
   theme/                 # Theme components exposed for swizzling
 dist/                    # Compiled output shipped to npm
 examples/docusaurus-v3/  # Example site consuming the local plugin package
-scripts/                 # Helper scripts for build/watch flows
+tests/                   # Vitest source tests and built-package checks
+tsup.config.ts           # Build/watch configuration
 ```
 
 Edit files in `src/` and run the build script before publishing or testing against `dist/`.

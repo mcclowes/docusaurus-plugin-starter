@@ -6,7 +6,7 @@
 - **Client + theme wiring** – `src/client/index.ts` and `src/theme/StarterMessage` demonstrate client-side behaviour and swizzlable components.
 - **Remark integration** – `src/remark/starterRemarkPlugin.ts` illustrates how to ship markdown transforms.
 - **Example site** – `examples/docusaurus-v3` consumes the plugin locally so you can iterate quickly.
-- **Tests + build scripts** – Jest, TypeScript, and copying helpers are configured out-of-the-box.
+- **Tests + build scripts** – Vitest, TypeScript, and tsup are configured out-of-the-box.
 
 Use this template as a launchpad: rename things, rip out the examples, and focus on your feature without rebuilding the plumbing.
 
@@ -14,11 +14,13 @@ Use this template as a launchpad: rename things, rip out the examples, and focus
 
 ```bash
 npm install
+npm run build
+npm --prefix examples/docusaurus-v3 install
 npm run example:start
 ```
 
 - Open `http://localhost:3000/starter` to see the example route the plugin registers.
-- Edit anything in `src/` to iterate; the example site hot-reloads automatically.
+- Run `npm run watch` in a second terminal while editing `src/` so the example site can load rebuilt plugin files.
 - Run `npm run build` when you are ready to consume or publish the compiled plugin in `dist/`.
 
 ## What you get
@@ -31,11 +33,14 @@ npm run example:start
 │   ├── components/StarterPage  # Example route wired via addRoute
 │   ├── remark/starterRemarkPlugin.ts
 │   └── theme/StarterMessage    # Theme component exposed for swizzling
-├── __tests__/plugin.test.js    # Lifecycle smoke tests
+├── tests/plugin.test.ts       # Lifecycle tests
+├── tests/components/          # Route component tests
+├── tests/theme/               # Theme component tests
+├── tests/package.test.mjs     # Built ESM and CommonJS export checks
 ├── examples/docusaurus-v3/     # Local example site consuming ./dist
-├── scripts/                    # Build + watch helpers for copying assets
+├── tsup.config.ts              # ESM/CommonJS bundles, declarations, and CSS copying
 ├── tsconfig.json               # TypeScript config (src → dist)
-├── jest.config.cjs             # Jest set up for TS/React
+├── vitest.config.ts            # Vitest set up for TS/React
 └── README.md                   # You are here
 ```
 
@@ -44,17 +49,16 @@ npm run example:start
 - `loadContent` prepares data that will be shared with the client/theme.
 - `contentLoaded` emits a JSON data module, adds an example route, and calls `setGlobalData`.
 - `getClientModules` registers a client script that runs on every navigation.
-- `getThemePath` exposes `src/theme/StarterMessage` for swizzling.
+- `getThemePath` exposes the built `dist/theme/StarterMessage` for swizzling.
 
 Swap these hooks for the ones your plugin needs.
 
 ## Example configuration
 
-Inside `examples/docusaurus-v3/docusaurus.config.js`:
+After installing the built plugin in a Docusaurus site, configure it in `docusaurus.config.js`:
 
 ```js
-import path from 'path';
-import pluginStarter from 'docusaurus-plugin-starter';
+import { createStarterRemarkPlugin } from 'docusaurus-plugin-starter';
 
 export default {
   presets: [
@@ -63,7 +67,7 @@ export default {
       {
         docs: {
           remarkPlugins: [
-            pluginStarter.createStarterRemarkPlugin({
+            createStarterRemarkPlugin({
               marker: 'NOTE',
               replacement: '💡 NOTE',
             }),
@@ -74,7 +78,7 @@ export default {
   ],
   plugins: [
     [
-      path.resolve(__dirname, '../../dist'),
+      'docusaurus-plugin-starter',
       {
         greetingMessage: 'Welcome to the example site!',
         routePath: '/starter',
@@ -84,13 +88,16 @@ export default {
 };
 ```
 
-Copy this into your own project and replace the example pieces with real functionality.
+Merge these entries into your site's existing presets and plugins. The bundled example uses the local `dist/` package instead of an installed package.
 
 ## Scripts
 
-- `npm run build` – Compile TypeScript and copy assets into `dist/`.
+- `npm run build` – Bundle ESM and CommonJS, generate type declarations, and copy CSS into `dist/`.
 - `npm run watch` – Rebuild on changes (perfect when the example site is running).
-- `npm run test` – Execute Jest against the TypeScript sources.
+- `npm test` – Run Vitest against the TypeScript sources and React components.
+- `npm run test:package` – Check built ESM and CommonJS exports after `npm run build`.
+- `npm run typecheck` / `npm run lint` – Check TypeScript types and ESLint rules.
+- `npm run format:check` – Verify Prettier formatting.
 - `npm run example:*` – Helpers for the bundled Docusaurus site.
 
 ## Next steps for you
