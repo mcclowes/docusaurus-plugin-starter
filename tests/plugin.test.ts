@@ -17,6 +17,8 @@ describe('pluginStarter', () => {
   });
 
   it('loads starter content using defaults', async () => {
+    expect(typeof window).toBe('undefined');
+    expect(typeof document).toBe('undefined');
     const plugin = pluginStarter(context, {});
     const content = await plugin.loadContent!();
     expect(content).toEqual({

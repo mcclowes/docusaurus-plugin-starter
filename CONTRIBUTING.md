@@ -34,6 +34,9 @@ Share your idea by opening an issue that includes:
 
 ## Local development
 
+Use a current Node 20, 22, or 24 release for development, matching CI. The built-package checks also
+cover Node 18 separately.
+
 ```bash
 git clone https://github.com/mcclowes/docusaurus-plugin-starter.git
 cd docusaurus-plugin-starter
@@ -48,6 +51,10 @@ npm --prefix examples/docusaurus-v3 install
 - `npm run test:package` – check the built ESM and CommonJS exports after `npm run build`
 - `npm run example:start` – launch the bundled Docusaurus example for manual testing
 - `npm run format` / `npm run format:check` – apply or verify Prettier formatting
+
+Source tests use two projects in `vitest.config.ts`: `.test.ts` files run in Node without browser
+globals, and `.test.tsx` files run in jsdom. Both projects inherit the shared aliases, setup, and CSS
+handling.
 
 ## Project layout
 

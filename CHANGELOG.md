@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+- Use the patched Vitest 4 runner while preserving Node and jsdom test environments (#61).
 - Refresh locked development and example dependencies within their declared ranges (#59).
 
 ### Fixed
