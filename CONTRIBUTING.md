@@ -58,6 +58,8 @@ globals, and `.test.tsx` files run in jsdom. Both projects inherit the shared al
 handling.
 
 The root and example manifests have scoped, temporary overrides for patched Docusaurus tooling.
+The selector-parser pin covers shared CSS presets and CSS-loader consumers throughout each
+installation. The worker, serializer, and UUID pins target their parent consumers.
 They apply to these installation roots, as described in [npm's override rules](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/#overrides).
 `test:toolchain` checks CSS transformations, serialization, SSG worker tasks, SockJS sessions, and
 Express query/form parsing through each graph's consumers. CI installs both graphs and builds the

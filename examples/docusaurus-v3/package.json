@@ -19,9 +19,7 @@
     "@docusaurus/core": {
       "tinypool": "2.1.2"
     },
-    "@docusaurus/bundler": {
-      "postcss-selector-parser": "7.1.6"
-    },
+    "postcss-selector-parser": "7.1.6",
     "copy-webpack-plugin": {
       "serialize-javascript": "7.1.2"
     },
