@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Example helpers forward custom CLI options and values containing spaces (#62).
 - The bundled example loads its remark helper correctly for docs and pages (#57).
 - Setup instructions now include the plugin build and example dependency install, and configuration examples use the named remark helper (#56).
 - CommonJS consumers can load the plugin and remark exports on Node 18 and newer (#49).

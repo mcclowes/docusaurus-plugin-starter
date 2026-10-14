@@ -28,6 +28,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run test:package
+      - run: npm run test:helpers
       - run: npm --prefix examples/docusaurus-v3 ci
       - run: npm run test:toolchain
       - run: npm run typecheck

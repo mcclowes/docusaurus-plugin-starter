@@ -42,12 +42,13 @@
     "test": "vitest run",
     "test:package": "node --test tests/package.test.mjs",
     "test:toolchain": "node --test tests/toolchain/*.test.mjs",
+    "test:helpers": "node --test tests/example-helpers.test.mjs",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "example:start": "npm --prefix examples/docusaurus-v3 run start",
-    "example:build": "npm --prefix examples/docusaurus-v3 run build",
-    "example:serve": "npm --prefix examples/docusaurus-v3 run serve",
-    "example:clear": "npm --prefix examples/docusaurus-v3 run clear",
+    "example:start": "npm --prefix examples/docusaurus-v3 run start --",
+    "example:build": "npm --prefix examples/docusaurus-v3 run build --",
+    "example:serve": "npm --prefix examples/docusaurus-v3 run serve --",
+    "example:clear": "npm --prefix examples/docusaurus-v3 run clear --",
     "prepublishOnly": "npm run build && npm test && npm run test:package"
   },
   "keywords": [

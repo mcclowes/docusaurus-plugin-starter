@@ -49,9 +49,13 @@ npm --prefix examples/docusaurus-v3 install
 - `npm run watch` – rebuild on changes (ideal while running the example site)
 - `npm test` – run Vitest source tests
 - `npm run test:package` – check the built ESM and CommonJS exports after `npm run build`
+- `npm run test:helpers` – check example-helper argument forwarding in isolated subprocess fixtures
 - `npm run test:toolchain` – check both installed dependency graphs after installing the example
 - `npm run example:start` – launch the bundled Docusaurus example for manual testing
 - `npm run format` / `npm run format:check` – apply or verify Prettier formatting
+
+Pass example CLI options after `--`, for example `npm run example:start -- --port 3001`.
+The helpers forward these options to the example's Docusaurus command.
 
 Source tests use two projects in `vitest.config.ts`: `.test.ts` files run in Node without browser
 globals, and `.test.tsx` files run in jsdom. Both projects inherit the shared aliases, setup, and CSS
