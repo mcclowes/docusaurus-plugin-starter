@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+
+- Refresh locked development and example dependencies within their declared ranges (#59).
+
 ### Fixed
 
 - The bundled example loads its remark helper correctly for docs and pages (#57).
