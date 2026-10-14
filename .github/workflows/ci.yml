@@ -22,13 +22,19 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+          cache-dependency-path: |
+            package-lock.json
+            examples/docusaurus-v3/package-lock.json
       - run: npm ci
       - run: npm run build
       - run: npm run test:package
+      - run: npm --prefix examples/docusaurus-v3 ci
+      - run: npm run test:toolchain
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run format:check
       - run: npm test
+      - run: npm run example:build
       - name: Use the minimum consumer runtime
         if: matrix.node-version == '20.x'
         uses: actions/setup-node@v4

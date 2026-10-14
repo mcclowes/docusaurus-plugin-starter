@@ -49,12 +49,21 @@ npm --prefix examples/docusaurus-v3 install
 - `npm run watch` – rebuild on changes (ideal while running the example site)
 - `npm test` – run Vitest source tests
 - `npm run test:package` – check the built ESM and CommonJS exports after `npm run build`
+- `npm run test:toolchain` – check both installed dependency graphs after installing the example
 - `npm run example:start` – launch the bundled Docusaurus example for manual testing
 - `npm run format` / `npm run format:check` – apply or verify Prettier formatting
 
 Source tests use two projects in `vitest.config.ts`: `.test.ts` files run in Node without browser
 globals, and `.test.tsx` files run in jsdom. Both projects inherit the shared aliases, setup, and CSS
 handling.
+
+The root and example manifests have scoped, temporary overrides for patched Docusaurus tooling.
+They apply to these installation roots, as described in [npm's override rules](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/#overrides).
+`test:toolchain` checks CSS transformations, serialization, SSG worker tasks, SockJS sessions, and
+Express query/form parsing through each graph's consumers. CI installs both graphs and builds the
+example. Pin updates also need a two-worker SSG build and a comparison of rendered routes. Remove the
+temporary pins when upstream ranges include the fixes; keep the published plugin API and framework
+declarations unchanged.
 
 ## Project layout
 
